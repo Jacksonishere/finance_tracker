@@ -1,0 +1,11 @@
+<% if flash.now[:notice] %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <b><%= flash.now[:notice] %></b>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% elsif flash.now[:alert] %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <b><%= flash.now[:alert] %></b>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
