@@ -1,12 +1,24 @@
 <%= render partial: 'shared/flashes' %>
 
 <% if @stock %>
-  <div class="row">
+  <div class="row" style="padding-left: 12px">
     <div class="card card-header col-9 flex-row justify-content-between align-items-center">
       <strong>Symbol: <%= @stock.ticker %></strong>
       <strong>Name: <%= @stock.name %></strong>
       <strong>Price: <%= @stock.last_price %></strong>
-      <%= button_to 'Add to portfolio', user_stocks_path(ticker: @stock.ticker), class: "btn btn-success" %>
+      
+      <% if current_user.can_track_stock?(@stock.ticker) %>
+        <%= button_to 'Add to portfolio', user_stocks_path(ticker: @stock.ticker), class: "btn btn-success" %>
+      <% else %>
+        <span class="badge rounded-pill bg-secondary">
+        You are  
+        <% if !current_user.under_stock_limit? %>
+          tracking the max amount of stocks!
+        </span>
+        <% else %>
+          already tracking this stock
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>

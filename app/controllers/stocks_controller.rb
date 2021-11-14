@@ -1,8 +1,7 @@
 class StocksController < ApplicationController
-  
   def search
     if params[:stock].present?
-      @stock = Stock.new_lookup(params[:stock])
+      @stock = Stock.new_lookup(params[:stock].upcase)
       if @stock
         respond_to do |format|
           #expects a js.erb now

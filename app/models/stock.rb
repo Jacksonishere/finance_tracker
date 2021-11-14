@@ -1,4 +1,5 @@
 class Stock < ApplicationRecord
+  before_save { self.ticker = ticker.upcase }
   has_many :user_stocks
   has_many :users, through: :user_stocks
 
