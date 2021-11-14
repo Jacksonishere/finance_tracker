@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   #can register user, forgot password, one logged in stay signed in
+  has_many :user_stocks
+  has_many :stocks, through: :user_stocks
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

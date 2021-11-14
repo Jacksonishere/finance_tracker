@@ -1,0 +1,12 @@
+<%= render partial: 'shared/flashes' %>
+
+<% if @stock %>
+  <div class="row">
+    <div class="card card-header col-9 flex-row justify-content-between align-items-center">
+      <strong>Symbol: <%= @stock.ticker %></strong>
+      <strong>Name: <%= @stock.name %></strong>
+      <strong>Price: <%= @stock.last_price %></strong>
+      <%= button_to 'Add to portfolio', user_stocks_path(ticker: @stock.ticker), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
