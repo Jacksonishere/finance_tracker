@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def friends
-    byebug
     @friends = current_user.friends
   end
 end

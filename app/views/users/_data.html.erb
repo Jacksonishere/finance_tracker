@@ -1,0 +1,25 @@
+<%= render partial: 'shared/flashes' %>
+
+<% if @users %>
+  <div class="row" style="padding-left: 12px">
+    <div class="card card-header col-10">
+    <table>
+      <tbody>
+        <% @users.each do |user| %>
+            <tr>
+              <td><strong>Email: <%= user.email %></strong></td>
+              <td><strong>Name: <%= user.fullname %></strong></td>
+              <td><%= link_to 'View Profile', '#', class: "btn btn-success" %></td>
+              
+              <% if !current_user.already_following?(user.id) %>
+                <td><%= button_to 'Follow', friendships_path(user: user), class: "btn btn-success" %></td>
+              <% else %>
+                <td><%= link_to 'Unfollow', friendship_path(user), class: "btn btn-danger" %></td>
+              <% end %>
+            </tr>
+          </div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

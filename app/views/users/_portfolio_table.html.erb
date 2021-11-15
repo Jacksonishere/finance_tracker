@@ -1,19 +1,17 @@
-<% if @tracked_stocks %>
-  <div class="row mt-3">
-    <div class="col-sm-9 pe-0">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Ticker</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <% @tracked_stocks.each do |stock| %>
-          <%= render partial: 'portfolio_cell', locals: {stock: stock }  %>
-        <% end %>
-      </table>
-    </div>
+<div class="row mt-3">
+  <div class="col-sm-9 pe-0">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Ticker</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <% @tracked_stocks.each do |stock| %>
+        <%= render partial: 'portfolio_cell', locals: {stock: stock }  %>
+      <% end %>
+    </table>
   </div>
-<% end %>
+</div>

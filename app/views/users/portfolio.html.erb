@@ -17,5 +17,7 @@
   <div id="results" class="mt-3">
   </div>
 
-  <%= render partial: 'portfolio_table' %>
+  <% if @tracked_stocks.count > 0 %>
+    <%= render partial: 'portfolio_table' %>
+  <% end %>
 </div>

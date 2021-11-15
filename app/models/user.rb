@@ -35,4 +35,47 @@ class User < ApplicationRecord
     return "Anon"
   end
 
+
+  ##### FOR SEARCH
+
+  def self.first_name_matches(param)
+    matches('first_name', param)
+  end
+
+  def self.last_name_matches(param)
+    matches('last_name', param)
+  end
+
+  def self.email_matches(param)
+    matches('email', param)
+  end
+
+  #gets the records where the field_name contains th param
+  def self.matches(field_name, param)
+    where("#{field_name} like ?", "%#{param}%")
+  end
+
+  #gets the records that correlate to search params using the helpers above.
+  def self.search(param)
+    param.strip! #removes leading and trailing whitespace
+
+    #returns unique list of concatenated users.  
+    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param)).uniq
+
+    #if none, means user not in the database with that first/last name or email
+    return nil unless to_send_back
+    to_send_back
+  end
+
+  #exclude current user from a list of users
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
+  end
+
+  #use find if you know it exists otherwise throws error
+  def already_following?(user_id)
+    friends.where(id: user_id).exists?
+  end
+
+
 end
