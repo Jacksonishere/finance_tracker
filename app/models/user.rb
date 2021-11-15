@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
   
   def under_stock_limit?
-    stocks.count < 7
+    stocks.count < 6
   end
 
   def can_track_stock?(ticker_symbol)
@@ -77,5 +77,7 @@ class User < ApplicationRecord
     friends.where(id: user_id).exists?
   end
 
-
+  def already_tracking?(stock_id)
+    stocks.where(id: stock_id).exists?
+  end
 end

@@ -9,12 +9,12 @@
             <tr>
               <td><strong>Email: <%= user.email %></strong></td>
               <td><strong>Name: <%= user.fullname %></strong></td>
-              <td><%= link_to 'View Profile', '#', class: "btn btn-success" %></td>
+              <td><%= link_to 'View Profile', user_path(user), class: "btn btn-sm btn-success" %></td>
               
               <% if !current_user.already_following?(user.id) %>
-                <td><%= button_to 'Follow', friendships_path(user: user), class: "btn btn-success" %></td>
+                <td><%= button_to 'Follow', friendships_path(user: user), class: "btn btn-sm btn-success" %></td>
               <% else %>
-                <td><%= link_to 'Unfollow', friendship_path(user), class: "btn btn-danger" %></td>
+                <td><%= link_to 'Unfollow', friendship_path(user), class: "btn btn-sm btn-danger" %></td>
               <% end %>
             </tr>
           </div>

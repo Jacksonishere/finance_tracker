@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   #devise routes for user auth
   devise_for :users
+  #show user profile page
+  resources :users, only: [:show]
 
   #for handling ajax request
   get 'search_stock', to: 'searches#stock'
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   get 'portfolio', to: 'users#portfolio'
   #user friends
   get 'friends', to: 'users#friends'
-  
+   
   #handling friendships
   resources :friendships, only: [:create, :destroy]
 end
