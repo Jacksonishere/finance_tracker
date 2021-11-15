@@ -5,6 +5,9 @@ class User < ApplicationRecord
   #can register user, forgot password, one logged in stay signed in
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
+
+  has_many :friendships
+  has_many :friends, through: :friendships
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -25,6 +28,11 @@ class User < ApplicationRecord
 
   def can_track_stock?(ticker_symbol)
     under_stock_limit? && !stock_already_tracked?(ticker_symbol)
+  end
+
+  def fullname
+    return "#{first_name} #{last_name}" if first_name || last_name
+    return "Anon"
   end
 
 end

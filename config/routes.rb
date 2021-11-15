@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   
   #for handling tracking the stock for user.
   resources :user_stocks, only: [:create, :destroy]
+
+  #for friends
+  get 'friends', to: 'users#friends'
 end
